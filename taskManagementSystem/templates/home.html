@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="homepage">
+        <h2>Welcome to Task Management System!</h2>
+        <p>This is a simple website created using Django and Bootstrap.</p>
+        <a class="btn btn-warning text-center" href="{% url 'task_model' %}">Add Task</a>
+    </div>
+{% endblock %}
+    
