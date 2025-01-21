@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form class="contentForm" method='post'>
+        {% csrf_token %}
+        <h2>Add Musician Form</h2>
+        {{musician_form | crispy}}
+        <button class="btn btn-warning">Submit</button>
+    </form>
+{% endblock %}
+    

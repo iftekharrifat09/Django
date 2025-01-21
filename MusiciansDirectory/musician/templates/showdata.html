@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="datatable">
+    <h1>Musicians Directory</h1>
+    <a  class="btn btn-info mb-3" href="{% url 'add_musician' %}">Add Musician</a>
+    <table border=1 class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Musician Name</th>
+                <th>Email</th>
+                <th>Rating</th>
+                <th>Instrument Type</th>
+                <th>Album Name</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for musician in musicians %}
+        <tr>
+            <th>{{ musician.id }}</th>
+            <td>{{ musician.first_name }} {{ musician.last_name }}</td>
+            <td>{{ musician.email }}</td>
+            <td>
+                <ul>
+                    {% for album in musician.albums.all %}
+                        <li>{{ album.rating }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                
+                {% for instrument in musician.instrument_type.all %}
+                    {{instrument}},
+                {% endfor %}
+                
+            </td>
+            <td><ul>
+                {% for album in musician.albums.all %}
+                    <li>{{ album.album_name }}</li>
+                {% endfor %}
+            </ul>
+            </td>
+            <td>
+                <ul>
+                {% for album in musician.albums.all %}
+                    <li>{{ album.release_date }}</li>
+                {% endfor %}
+            </ul>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'add_album'%}">Add Album</a> |
+                <a class="btn btn-warning" href="{% url 'editmusician' musician.id %}">Edit</a> |
+                <a class="btn btn-danger" href="{% url 'deletemusician' musician.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock  %}

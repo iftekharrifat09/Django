@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form class="contentForm" method='post'>
+        {% csrf_token %}
+        <h2>Add Instrument Form</h2>
+        {{ instrument_form | crispy }}
+        <button class="btn btn-warning" type="submit">Submit</button>
+        <!-- Button to trigger the modal -->
+        <button href="" type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            All Instruments
+        </button>
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">All the Instrument List</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        
+                        {% for instu in instruments %}
+                            <li>{{instu}}</li>
+                        {% endfor %}
+                            
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

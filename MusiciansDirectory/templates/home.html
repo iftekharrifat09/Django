@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form class="homepage" method='post'>
+        {% csrf_token %}
+        <h1>Welcome To Music World</h1>
+        <h4>Melodies of the Soul: Exploring the Magic of Music</h4>
+        <p>Music is a universal language that transcends boundaries, cultures, and time. It has the power to evoke emotions, tell stories, and connect people in ways words often cannot. From the soothing melodies of classical compositions to the electrifying beats of modern genres, music resonates with the soul, offering comfort, joy, and inspiration. It serves as a companion during moments of solitude, a celebration during festivities, and an anchor in times of turmoil. Exploring the magic of music is like embarking on a journey through rhythm, harmony, and lyrics, discovering the limitless creativity and emotion that it brings to life.</p>
+        <a href="{% url 'add_musician' %}" class="btn btn-primary">Register</a>
+    </form>
+{% endblock %}

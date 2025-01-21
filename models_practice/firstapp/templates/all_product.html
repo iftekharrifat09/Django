@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>All Product</h2>
+    <div class="d-flex products" method="post">
+        {% csrf_token %}
+        {% for product in products %}
+            <div class="addProduct">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{product.image_url}}" class="card-img-top" alt="img">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.title}}</h5>
+                      <p style="color: goldenrod;"><strong>Price: {{product.price}}$</strong></p>
+                      <p class="card-text">{{product.description|truncatewords:15}}</p>
+                      <a href="{% url 'deleteproduct' product.id%}" class="btn btn-danger mt-2">Delete</a>
+                    </div>
+                  </div>
+            </div>
+        {% endfor %}
+            
+    </div>
+{% endblock %}

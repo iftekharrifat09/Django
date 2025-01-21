@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 class="text-primary text-center mt-5">All Customers</h1>
+    <div class="allcustomer" method="post">
+        {% csrf_token %}
+        {% for customer in customers %}
+            <div class="customer_card">
+                <div class="card-body">
+                    <h5>Customer ID: {{customer.id}}</h5>
+                    <h5 class="card-h5">Name: {{customer.name}}</h5>
+                    <p class="card-text"><strong>Email: </strong>{{customer.email}}</p>
+                    <p class="card-text"><strong>Phone: </strong>{{customer.phone_number}}</p>
+                    <p class="card-text"><strong>Address: </strong>{{customer.address}}</p>
+                    <p class="card-text"><strong>Created On: </strong>{{customer.created_at}}</p>
+
+                    <a href="{% url 'deletecustomer' customer.id%}" class="btn btn-danger mt-2 dlt-cstmr">Delete</a>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

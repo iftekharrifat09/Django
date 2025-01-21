@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>This is Auto Generated Feedback Email</h1>
+    <div class="emialFormat">
+        <p>From: <strong>{{feedbackData.email}}</strong></p>
+        <p>To: <strong>admin@gmail.com</strong></p>
+        <p>Hey <strong>Admin</strong>,</p>
+    
+        <p>{{feedbackData.comment}}</p>
+    
+        {% if feedbackData.agree == True %}
+            <p style="color: green"><strong>I Know what are I Writing about !!</strong></p>
+        {% else %}
+            <p style="color: red"><strong>I don't Know what I am writing about</strong></p>
+        {% endif %}
+            
+    
+        <p>Sincerely,</p>
+        <p><strong>{{feedbackData.name}}</strong></p>
+        <p><strong>{{feedbackData.day}}</strong></p>
+        <a class="btn btn-success" href="{% url 'feedback'%}">Send</a>
+    </div>
+    
+{% endblock %}

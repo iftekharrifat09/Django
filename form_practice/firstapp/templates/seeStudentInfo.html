@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>This is Student Information Details</h1>
+    <div class="student_data mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-5">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Student Informations</h5>
+                  <p class="card-text"><strong>Name:</strong> {{studentData.name}}</p>
+                  <p class="card-text"><strong>Email:</strong> {{studentData.email}}</p>
+                  <p class="card-text"><strong>Birthday:</strong> {{studentData.birth_dae}}</p>
+                  
+                  {% if studentData.gender == 'M' %}
+                    <p class="card-text"><strong>Gender:</strong> Male</p>
+                  {% elif studentData.gender == 'F' %}
+                    <p class="card-text"><strong>Gender:</strong> Female</p>
+                  {% elif studentData.gender == 'O' %}
+                    <p class="card-text"><strong>Gender:</strong> Other</p>
+                  {% endif %}
+                    
+                  <p class="card-text"><strong>Course:</strong>
+                    <ol>
+                        {% for course in studentData.Select_Course %}
+                            <li>{{ course }}</li>
+                        {% endfor %}
+                    </ol>
+                </p>
+
+                  <a href="{% url 'studentInfo' %}" class="btn btn-danger">Close</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+{% endblock %}
