@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+      
+      {% if messages %}
+        
+        {% for msg in messages %}
+            
+            <div aria-live="polite" aria-atomic="true" class="position-relative">
+                <div class="toast-container top-0 end-0 p-3">
+                  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpBrFpH2FpYiRsG2DZ1FmeOOHaeixp8tTnfA&s" class="rounded me-2" alt="img">
+                      <strong class="me-auto">Alert!</strong>
+                      <small class="text-muted">just now</small>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <p {% if msg.tags %} class="{{msg.tags}}"{%endif%}>{{msg}}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+            
+      {% endif %}
+        
+<form class="signup" method="POST">    
+        <h1>Sign Up</h1>
+        {% csrf_token %}
+            {{form|crispy}}
+        <button style="width:100%" type="submit" class="btn btn-success">Sign Up</button>
+        <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </form>
+{% endblock %}
+
