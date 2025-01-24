@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="POST">
+        <h1>User {{type}}</h1>
+        {% csrf_token %}
+        {{form | crispy}}
+        <button class="btn btn-warning">Submit</button>
+        
+        {% if type == 'Login' %}
+        <p class="text-center mt-4">Dont have an Account?<a href="{%url 'register'%}"> Sign Up</a></p>
+        {% else %}
+        <p class="text-center mt-4">Have an Account?<a href="{%url 'login'%}"> Log In</a></p>
+        {% endif %}
+            
+    </form>
+    
+{% endblock %}
+    

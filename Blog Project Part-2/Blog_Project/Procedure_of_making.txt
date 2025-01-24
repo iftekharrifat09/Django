@@ -1,0 +1,15 @@
+##
+Step 1: At first create a project.
+Step 2: Then Devide the whole project theme into different app.
+Step 3: Then Create apps for those individual app.
+Step 4: Then Connect them into the Main project through the settings.
+Step 5: Into the main project update the urls with the apps name.
+Step 6: Then go to th models.py and create models Forms for each app.
+Step 7: Go to the admin section for each app and register all the models into the admin.
+Step 8: Then create super user  for the admin panel login.
+Step 9: Then Make Migrations and Migrate the models.
+
+Step 10: Make templates for each app and make a global templates and add it into the settings.py
+
+Step 11: Inherit the base template into the each app template.
+
