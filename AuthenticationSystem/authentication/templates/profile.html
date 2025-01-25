@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <form class="profile_form" method='post' >
+            {% csrf_token %}
+            <h1 class="text-center m-5">Profile Page</h1>
+            <div class="profile_card">
+                <h3>User Details</h3>
+                <p><strong>Username:</strong> {{user.username}}</p>
+                <p><strong>First Name:</strong> {{user.first_name}}</p>
+                <p><strong>Last Name:</strong> {{user.last_name}}</p>
+                <p><strong>Email:</strong> {{user.email}}</p>
+                <a href="{% url 'useredit'%}" class="btn btn-warning">User Edits</a>
+            </div>
+        </form>
+{% endblock %}

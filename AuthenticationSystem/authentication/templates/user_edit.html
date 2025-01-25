@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="edit_div">
+        <div class="edits">
+            <h2>User Edits</h2>
+            <a href="{% url 'editprofile'%}" class="btn btn-warning m-2">Profile Edit</a></br>
+            <a href="{% url 'changepassword2'%}" class="btn btn-warning m-2">Change Password</a></br>
+            <a href="{% url 'changepassword1'%}" class="btn btn-warning m-2">Change Password With Old Password</a></br>
+            <a href="{% url 'profile'%}" class="btn btn-primary m-2">Back to Profile</a>
+        </div>
+    </div>
+{% endblock %}
