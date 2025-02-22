@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form class="regi_form" method="post">
+        <h1 class="regi-h1">Registration</h1>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var input = document.querySelector(".phone-input");
+            window.intlTelInput(input, {
+                initialCountry: "bd",  // Set default country (Bangladesh)
+                preferredCountries: ["bd", "us", "gb"],  // Commonly used countries
+                separateDialCode: true,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
+        });
+    </script>
+
+{% endblock %}
+
+    

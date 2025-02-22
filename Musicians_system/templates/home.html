@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="album-h1 text-center mt-3 mb-4">Welcome to Music</h1>
+
+
+    <table class="table" style="width: 90%;margin: 0 auto;border: 1px solid #000; ">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Musician Name</th>
+                <th>Email</th>
+                <th>Album Rating</th>
+                <th>Instument Type</th>
+                <th>Album Name</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a style="text-decoration:none;" href="{% url 'update_user_data'%}">{{ album.musician.user.get_full_name}}</a></td>
+                <td>{{ album.musician.user.email }}</td>
+                <td>{{ album.rating }}</td>
+                <td>{{ album.musician.instrument_type }}</td>
+                <td>{{ album.title }}</td>
+                <td>{{ album.album_release_date|date:"d-M-Y" }}</td>
+                <td>
+                    <a class="btn btn-success btn-sm" href="{% url 'edit_album' album.id %}">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'delete_album' album.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        
+{% endblock %}
+    

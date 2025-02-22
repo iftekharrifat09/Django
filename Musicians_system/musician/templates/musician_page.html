@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="musician-h1">This is Musician Page</h1>
+    
+    {% for mu in musicians %}
+        <p>{{mu.id}}</p>
+        <a href="{% url 'update_user_data' %}">Edit</a>
+    {% endfor %}
+        
+ 
+{% endblock %}
+    

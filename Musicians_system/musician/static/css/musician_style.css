@@ -1,0 +1,29 @@
+.musician-h1{
+    color: rgb(138, 68, 229);
+}
+.regi-h1{
+    color:rgb(225, 8, 8);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.regi_form, .login_form{
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(248, 247, 250);
+    
+}
+#div_id_phone_number{
+    display: flex;
+    flex-direction: column;
+}
+#id_password1_helptext{
+    display:none;
+}
+.regi_form button{
+    width: 100%;
+}
+

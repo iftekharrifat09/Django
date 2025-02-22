@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="album-h1">This is Album Page</h1>
+    <a href="{% url 'album_form' %}" class="btn btn-success">Add</a>
+    
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Musician Name</th>
+                <th>Email</th>
+                <th>Album Rating</th>
+                <th>Instument Type</th>
+                <th>Album Name</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'update_user_data' album.musician.user.id%}">{{ album.musician.user.get_full_name}}</a></td>
+                <td>{{ album.musician.user.email }}</td>
+                <td>{{ album.rating }}</td>
+                <td>{{ album.musician.instrument_type }}</td>
+                <td>{{ album.title }}</td>
+                <td>{{ album.album_release_date|date:"d-M-Y" }}</td>
+                <td>
+                    <a href="{% url 'edit_album' album.id %}">Edit</a>
+                    <a href="{% url 'delete_album' album.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        
+{% endblock %}
+    
