@@ -26,7 +26,8 @@ class CreateAlbumView(CreateView):
             return HttpResponse("You need to be a musician to create an album.")
         
         return super().form_valid(form)
-    
+
+@method_decorator(login_required, name='dispatch')  
 class UpdateAlbumView(UpdateView):
     model = models.Album
     form_class = forms.AlbumForm
@@ -34,14 +35,17 @@ class UpdateAlbumView(UpdateView):
     pk_url_kwarg = 'id'
     success_url = reverse_lazy('album_page')
     
-    
+
+@method_decorator(login_required, name='dispatch') 
 class DeleteAlbumView(DeleteView):
     model = models.Album
     template_name = 'delete_album.html'
     pk_url_kwarg = 'id'
     success_url = reverse_lazy('album_page')
-    
+
 def all_albums(request):
+    if not request.user.is_authenticated:
+        return redirect('login_page')
     albums = models.Album.objects.all()
     print(albums)
     return render(request, 'home.html', {'albums': albums})

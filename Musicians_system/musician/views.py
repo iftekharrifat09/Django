@@ -6,6 +6,8 @@ from django.contrib import messages
 from . import models
 from . import forms
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def musician(request):
     return render(request, 'musician_page.html')
@@ -38,7 +40,7 @@ class LoginClassView(LoginView):
         messages.error(self.request, 'Invalid username or password')
         return super().form_invalid(form)
     
-    
+@method_decorator(login_required, name='dispatch')
 class LogoutClassView(LogoutView):
     next_page = reverse_lazy('login_page')  # Redirect after logout
     
@@ -47,7 +49,7 @@ class LogoutClassView(LogoutView):
         return super().dispatch(request, *args, **kwargs)
     
     
-    
+@method_decorator(login_required, name='dispatch')   
 class UpdateUserDataView(UpdateView): 
     model = models.Musician
     form_class = forms.UpdateMusicianForm
@@ -58,7 +60,7 @@ class UpdateUserDataView(UpdateView):
         """Ensure the logged-in musician's profile is being edited."""
         return self.request.user.musician  
     
-    
+@method_decorator(login_required, name='dispatch')    
 def all_musician(request):
     musicians = models.Musician.objects.all()
     return render(request, 'musician_page.html', {'musicians': musicians})
