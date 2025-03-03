@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+        <h5>All Brands</h5>
+        
+        {% for brand in brands %}
+          <p>{{brand}}</p>
+        {% endfor %}
+          
+
+        
+{% endblock %}
+    

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .all-cars{
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        gap: 20px;
+    }
+    .image img{
+        width: 700px;
+    }
+    .img-txt{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+        margin-top: 50px;
+
+    }
+</style>
+<div class="img-txt">
+    <div class="text-data">
+        <h1>A Realstic Car</h1>
+        <p style="font-size: 18px;">A car without a lot of power automatic or gimmicky features, a simple car, that I have to drive. A car that performs and mostly handles well, and when I put down my left foot the car responds. I’d much prefer a manual transmission. I would not want a shoe box with seats that I get in and it just takes me to another location. Driving my car has to be part of the experience of going somewhere, otherwise, I could just take the bus. A real car makes me feel good about driving it.
+        </p>
+    </div>
+    <div class="image">
+    <img src="{% static 'images/car.jpg' %}" alt="carImg"/>
+    </div>
+</div>
+<div class="brands">
+    <div class="brand-names">
+        <h5>Filter Cars: </h5>
+        <a class="brand-box btn btn-outline-warning" href="{% url 'home'%}">All</a>
+        {% for brand in brands %}
+        <a class="brand-box btn btn-outline-warning" href="{% url 'filter_car' brand.slug%}">{{brand}}</a>
+        {% endfor %}
+    </div>
+    <div class="mb-4">
+        {% if data %} 
+            <h5 class="text-success">Result Found: {{data|length}}</h5>
+        {% else %}
+            <h5 class="text-danger">No Results Found</h5>
+        {% endif %} 
+    </div>
+    <div class="all-cars">
+        {% for dt in data %}
+        <div class="card" style="width: 18rem;height:350px;overflow-y:auto;">
+            <img src="{{ dt.image.url }}" class="card-img-top" alt="img">
+            <div class="card-body">
+                <h6 class="card-title">{{dt.car_name|truncatechars:30}}</h6>
+                <h6 style="color:goldenrod" class="card-title">{{dt.brand}}</h6>
+                <p class="card-text">Price: {{dt.price}}$</p>
+                <a href="{% url 'car_details' dt.id%}" class="btn btn-primary ">View Details</a>
+            </div>
+        </div>
+        {% endfor %}    
+    </div>
+</div>
+{% endblock %}
+    

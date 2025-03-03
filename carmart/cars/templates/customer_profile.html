@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    .car-card{
+        width: 300px;
+    }
+    .head{
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        display: flex;
+        text-align: center;
+        gap: 50px;
+   }
+    .car-cards{
+        display: flex;
+        width: 80%;
+        flex-wrap: wrap;
+        justify-content: left;
+        align-items: center;
+        margin: auto;
+        gap: 20px;
+    }
+</style>
+        <div class="head">
+            <h3>My Cars</h3>
+            <a class="btn btn-primary" href="{% url 'edit_profile' %}">Edit Profile</a>
+        </div>
+        <div class="car-cards">
+            {% for car in cars %}
+            <div class="card car-card" >
+                <div class="card-body">
+                <p>{{car.customer.customer.get_full_name}}</p>
+                <p style="font-weight:bold;">{{car.car.car_name}}</p>
+                <p><strong>Brand: </strong> {{car.car.brand}}</p>
+                <p><strong>Model Number: </strong>{{car.car.model}}</p>
+                <p><strong>Price per Item: </strong>{{car.car.price}}$</p>
+                <p><strong>Total Price: </strong>{{ car.car.price|multiply:car.quantity }}$</p>
+                <p><strong>Quantity: </strong>{{car.quantity}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+{% endblock %}
+    

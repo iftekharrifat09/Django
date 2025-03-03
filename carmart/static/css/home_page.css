@@ -1,0 +1,23 @@
+.brand-box{
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #333;
+}
+.brands{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.brand-names{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 50px;
+}
+.card-img-top {
+    height: 180px; 
+    width: auto !important;
+}

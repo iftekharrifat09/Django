@@ -1,0 +1,20 @@
+.registration_form{
+    width: 600px;
+    margin: auto;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
+}
+.registration_form h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.registration_form button{
+    width: 100%;
+    margin-top: 20px !important;
+}
+
+
+
