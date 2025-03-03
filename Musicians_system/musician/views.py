@@ -59,9 +59,10 @@ class UpdateUserDataView(UpdateView):
     def get_object(self):
         """Ensure the logged-in musician's profile is being edited."""
         return self.request.user.musician  
-    
-@method_decorator(login_required, name='dispatch')    
+     
 def all_musician(request):
+    if not request.user.is_authenticated:
+        return redirect('login_page')
     musicians = models.Musician.objects.all()
     return render(request, 'musician_page.html', {'musicians': musicians})
         
